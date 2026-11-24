@@ -10,6 +10,44 @@
     <p>Quality bedding for your home.</p>
     <h2>Luxury Bedding Set</h2>
     <p>Discover comfort and quality.</p>
-<a href="https://nick-ai-automation.app.n8n.cloud/form/73784871-2e17-46e5-be93-d6c424cfcc05">Order Now</a>
+<form id="orderForm">
+    <label for="customer_name">Customer Name:</label>
+    <input type="text" id="customer_name" name="customer_name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="product">Product:</label>
+    <input type="text" id="product" name="product" value="Luxury Bedding Set" readonly>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+    <button type="submit">Submit Order</button>
+
+</form>
+    
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+const orderData = {
+    customer_name: document.getElementById("customer_name").value,
+    email: document.getElementById("email").value,
+    product: document.getElementById("product").value,
+    quantity: Number(document.getElementById("quantity").value)
+};
+
+console.log(orderData);
+fetch("https://nick-ai-automation.app.n8n.cloud/webhook/demohome-orders", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(orderData)
+});
+});
+</script>
+
 </body>
 </html>
