@@ -45,7 +45,19 @@ fetch("https://nick-ai-automation.app.n8n.cloud/webhook/demohome-orders", {
         "Content-Type": "application/json"
     },
     body: JSON.stringify(orderData)
+
+})
+.then(function(response) {
+    if (!response.ok) {
+        throw new Error("Server returned an error");
+    }
+    alert("Order request received!");
+})
+.catch(function(error) {
+    console.error("Order error:", error);
+    alert("Could not confirm the order. Please contact support before trying again.");
 });
+
 });
 </script>
 
