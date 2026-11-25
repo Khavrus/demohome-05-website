@@ -28,10 +28,14 @@
 </form>
     
 <script>
+    
+let currentOrderId = crypto.randomUUID();
+
 document.getElementById("orderForm").addEventListener("submit", function(event) {
     event.preventDefault();
     
 const orderData = {
+    order_id: currentOrderId,
     customer_name: document.getElementById("customer_name").value,
     email: document.getElementById("email").value,
     product: document.getElementById("product").value,
